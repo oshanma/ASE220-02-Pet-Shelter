@@ -1,0 +1,91 @@
+/* General Styles */
+/* Set a light background color for the entire page */
+body {
+  background-color: #f8f9fa;
+}
+
+/* Style the navbar with bottom margin for spacing */
+.navbar {
+  margin-bottom: 20px;
+}
+
+/* Enable smooth scrolling throughout the page */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Add a smooth transition effect for search bar interactions */
+#searchBar {
+  transition: all 0.3s ease-in-out;
+}
+
+/* Card Styles for Index Page */
+/* Set card titles to blue for better visibility */
+.card-title {
+  color: blue;
+}
+
+/* Ensure all cards stretch to fill their parent container */
+.card {
+  height: 100%;
+  display: flex;
+  flex-direction: column; /* Organize card content vertically */
+}
+
+/* Adjust card body layout for consistent spacing */
+.card-body {
+  flex-grow: 1; /* Stretch card body to fill remaining space */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Evenly distribute content vertically */
+}
+
+/* Ensure card images fit nicely within a fixed height */
+.card-img-top {
+  object-fit: cover;
+  height: 300px; /* Set a consistent image height */
+}
+
+/* Pet Details Styles */
+/* Container for pet details with padding, rounded corners, and a shadow */
+.pet-details-container {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #ffffff; /* Set a white background for contrast */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.311); /* Subtle shadow for depth */
+}
+
+/* Style the pet image to make it responsive and visually appealing */
+.pet-image {
+  max-width: 100%; /* Ensure the image doesn’t exceed its container */
+  border-radius: 8px; /* Add rounded corners */
+}
+
+/* Style for the pet name/title */
+.pet-info h3 {
+  color: blue; /* Use blue for emphasis */
+}
+
+/* Increase font size for pet details for readability */
+.pet-info p {
+  font-size: 1.1rem;
+}
+
+/* Style the back button with bottom margin for spacing */
+.back-button {
+  margin-bottom: 20px;
+}
+
+/* Centering the "No Results" Section */
+/* Style the "No Results" GIF to adjust its size */
+.no-results-gif {
+  max-width: 200px; /* Limit the GIF size for consistency */
+}
+
+/* Style the "No Results" text to make it prominent and readable */
+.no-results-text {
+  font-size: 1.5rem; /* Larger font size for emphasis */
+  font-weight: bold; /* Bold text for visibility */
+  color: #333; /* Use a darker color for contrast and readability */
+}

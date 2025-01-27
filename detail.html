@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pet Details</title>
+  
+  <!-- Link to Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Link to custom styles -->
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Back Button -->
+    <!-- Navigation button to go back to the homepage -->
+    <a href="index.html" class="btn btn-secondary back-button">Back to Home</a>
+
+    <!-- Pet Details Section -->
+    <div class="row pet-details-container">
+      <!-- Left Column: Pet Image -->
+      <div class="col-md-6">
+        <img id="petImage" src="#" alt="Pet Image" class="pet-image"> <!-- Placeholder for pet image -->
+      </div>
+
+      <!-- Right Column: Pet Information -->
+      <div class="col-md-6 pet-info">
+        <h3 id="petTitle">Pet Name</h3> <!-- Placeholder for pet name -->
+        <p><strong>Age:</strong> <span id="petAge"></span> years</p> <!-- Placeholder for pet age -->
+        <p><strong>Breed:</strong> <span id="petBreed"></span></p> <!-- Placeholder for pet breed -->
+        <p><strong>Gender:</strong> <span id="petGender"></span></p> <!-- Placeholder for pet gender -->
+        <p><strong>Microchip Number:</strong> <span id="petMicrochip"></span></p> <!-- Placeholder for pet microchip number -->
+        <p id="petAbout"></p> <!-- Placeholder for pet description -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-light text-center text-lg-start mt-4">
+    <div class="text-center p-3 bg-dark text-white">
+      <!-- Footer text -->
+      © 2025 Pet Shelter. All Rights Reserved.
+    </div>
+  </footer>
+
+  <!-- JavaScript Section -->
+  <script>
+    // When the DOM content is fully loaded
+    document.addEventListener('DOMContentLoaded', () => {
+      // Retrieve pet data from localStorage
+      const petData = JSON.parse(localStorage.getItem('selectedPet'));
+
+      // Populate the pet details page with the retrieved data
+      document.getElementById('petImage').src = `images/${petData.image}`; // Set pet image
+      document.getElementById('petTitle').innerText = `${petData.breed}, ${petData.sex}`; // Set pet title
+      document.getElementById('petAge').innerText = petData.age; // Set pet age
+      document.getElementById('petBreed').innerText = petData.breed; // Set pet breed
+      document.getElementById('petGender').innerText = petData.sex; // Set pet gender
+      document.getElementById('petMicrochip').innerText = petData.microchipNumber || 'N/A'; // Set microchip number or default to 'N/A'
+      document.getElementById('petAbout').innerText = petData.about; // Set pet description
+    });
+  </script>
+
+  <!-- Link to Bootstrap JavaScript Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
