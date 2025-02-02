@@ -1,13 +1,11 @@
-let petsData = []; // To store the fetched pet data
-
-// Fetch JSON data
-fetch('data.json')
-  .then(response => response.json())
-  .then(data => {
-    petsData = data; // Store fetched data globally
-    displayPets(data); // Display all pets initially
-  })
-  .catch(error => console.error('Error loading JSON:', error)); // Log an error if JSON fetching fails
+// Ensure petsData is available before running displayPets
+document.addEventListener("DOMContentLoaded", () => {
+  if (typeof petsData !== 'undefined') {
+    displayPets(petsData); // Display all pets initially
+  } else {
+    console.error("Error: petsData is not defined.");
+  }
+});
 
 // Function to display pets as cards
 function displayPets(pets) {
