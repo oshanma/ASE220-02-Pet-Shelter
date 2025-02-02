@@ -10,10 +10,18 @@ This project is a front-end web application designed to efficiently manage pet r
 
 ---
 
-## **Purpose**
+## **Recent Updates**
 
-The primary objective of this project is to practice and improve **HTML**, **CSS**, and responsive design skills using **Bootstrap 5**. This project also focuses on creating accessible and visually appealing web applications while incorporating interactivity using **JavaScript**.
+### **Key Changes** 
+- Replaced data.json with data.js: The project now loads pet data from a JavaScript file instead of a JSON file.
+- Updated scripts.js: Adjusted the logic to directly access the petsData variable from data.js.
+- Removed data.json: Since JavaScript natively supports object arrays, using a JSON file for static data was unnecessary.
 
+### **Why Use data.js Instead of data.json?**
+- Direct Variable Access: A JavaScript file (data.js) allows direct access to data as a global variable, eliminating the need for a fetch() request.
+- Faster Load Time: By avoiding an asynchronous fetch operation, the page loads data immediately without waiting for an external request.
+- Simplified Implementation: data.js allows for easier integration into JavaScript functions without requiring additional error handling for fetch failures.
+- More Flexibility: With data.js, we can manipulate and modify pet data within the script dynamically.
 ---
 
 ## **Features**
