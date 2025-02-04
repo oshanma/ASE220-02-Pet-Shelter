@@ -1,6 +1,7 @@
 /* General Styles */
 /* Set a light background color for the entire page */
 body {
+  font-family: 'Monospcae' ;
   background-color: #f8f9fa;
 }
 
