@@ -1,92 +1,146 @@
 /* General Styles */
-/* Set a light background color for the entire page */
 body {
-  font-family: 'Monospcae' ;
-  background-color: #f8f9fa;
+  font-family: 'Poppins', sans-serif;
+  background-color: #f4edea;
+  color: #3d3d3d;
+  margin: 0;
+  padding: 0;
 }
 
-/* Style the navbar with bottom margin for spacing */
+/* Navbar */
 .navbar {
-  margin-bottom: 20px;
+  background: linear-gradient(135deg, #b09a8c, #8d7760);
+  padding: 20px;
 }
 
-/* Enable smooth scrolling throughout the page */
-html {
-  scroll-behavior: smooth;
+.navbar-brand {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #ffffff;
 }
 
-/* Add a smooth transition effect for search bar interactions */
-#searchBar {
+.navbar-nav .nav-link {
+  color: #ffffff;
+  font-size: 1.2rem;
+  font-weight: 500;
+  transition: color 0.3s ease-in-out;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #e3c9b8;
+}
+
+/* Search Bar and Buttons */
+.form-control {
+  border-radius: 12px;
+  border: 2px solid #8d7760;
+  background-color: #f4edea;
+  color: #3d3d3d;
+  padding: 12px;
+}
+
+.btn-success {
+  background: linear-gradient(135deg, #a5a58d, #6d6d6d);
+  border: none;
+  border-radius: 12px;
+  padding: 12px 20px;
+  font-size: 1rem;
+  color: white;
+  font-weight: bold;
+  transition: transform 0.3s ease-in-out, background 0.3s;
+}
+
+.btn-success:hover {
+  background: linear-gradient(135deg, #6d6d6d, #a5a58d);
+  transform: scale(1.05);
+}
+
+/* Cards */
+.card {
+  background-color: #fff8f3;
+  border-radius: 18px;
+  box-shadow: 0 8px 16px rgba(141, 119, 96, 0.2);
+  transition: transform 0.4s ease-in-out, box-shadow 0.4s;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 24px rgba(141, 119, 96, 0.3);
+}
+
+.card-img-top {
+  object-fit: cover;
+  height: 300px;
+  width: 100%;
+  border-top-left-radius: 18px;
+  border-top-right-radius: 18px;
+}
+
+.card-title {
+  color: #8d7760;
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+}
+
+/* Delete Button */
+.delete-btn {
+  background: linear-gradient(135deg, #a06c60, #80574d);
+  color: white;
+  border: none;
+  padding: 14px;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 12px;
   transition: all 0.3s ease-in-out;
 }
 
-/* Card Styles for Index Page */
-/* Set card titles to blue for better visibility */
-.card-title {
-  color: blue;
+.delete-btn:hover {
+  background: linear-gradient(135deg, #80574d, #a06c60);
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(128, 87, 77, 0.5);
 }
 
-/* Ensure all cards stretch to fill their parent container */
-.card {
-  height: 100%;
-  display: flex;
-  flex-direction: column; /* Organize card content vertically */
-}
-
-/* Adjust card body layout for consistent spacing */
-.card-body {
-  flex-grow: 1; /* Stretch card body to fill remaining space */
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between; /* Evenly distribute content vertically */
-}
-
-/* Ensure card images fit nicely within a fixed height */
-.card-img-top {
-  object-fit: cover;
-  height: 300px; /* Set a consistent image height */
-}
-
-/* Pet Details Styles */
-/* Container for pet details with padding, rounded corners, and a shadow */
-.pet-details-container {
-  margin-top: 20px;
-  padding: 20px;
-  background-color: #ffffff; /* Set a white background for contrast */
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.311); /* Subtle shadow for depth */
-}
-
-/* Style the pet image to make it responsive and visually appealing */
-.pet-image {
-  max-width: 100%; /* Ensure the image doesn’t exceed its container */
-  border-radius: 8px; /* Add rounded corners */
-}
-
-/* Style for the pet name/title */
-.pet-info h3 {
-  color: blue; /* Use blue for emphasis */
-}
-
-/* Increase font size for pet details for readability */
-.pet-info p {
+/* Footer */
+.footer {
+  background: linear-gradient(135deg, #b09a8c, #8d7760);
+  color: white;
+  text-align: center;
+  padding: 25px 0;
   font-size: 1.1rem;
 }
 
-/* Style the back button with bottom margin for spacing */
-.back-button {
-  margin-bottom: 20px;
+.footer a {
+  color: #e3c9b8;
+  text-decoration: none;
+  font-weight: 500;
 }
 
-/* Centering the "No Results" Section */
-/* Style the "No Results" GIF to adjust its size */
-.no-results-gif {
-  max-width: 200px; /* Limit the GIF size for consistency */
+.footer a:hover {
+  color: #ffffff;
+  text-decoration: underline;
 }
 
-/* Style the "No Results" text to make it prominent and readable */
-.no-results-text {
-  font-size: 1.5rem; /* Larger font size for emphasis */
-  font-weight: bold; /* Bold text for visibility */
-  color: #333; /* Use a darker color for contrast and readability */
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.card {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.btn-success, .delete-btn {
+  animation: fadeIn 0.6s ease-in-out;
 }

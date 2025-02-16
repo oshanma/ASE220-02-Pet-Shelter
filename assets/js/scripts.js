@@ -1,81 +1,86 @@
-// Ensure petsData is available before running displayPets
+/* scripts.js */
+let visiblePets = 9;
+
 document.addEventListener("DOMContentLoaded", () => {
   if (typeof petsData !== 'undefined') {
-    displayPets(petsData); // Display all pets initially
+    displayPets(petsData.slice(0, visiblePets));
   } else {
     console.error("Error: petsData is not defined.");
   }
 });
 
-// Function to display pets as cards
 function displayPets(pets) {
   const petCards = document.getElementById('petCards');
-  petCards.innerHTML = ''; // Clear existing content
-
-  // Display a "No Results" message if no pets match the criteria
-  if (pets.length === 0) {
-    petCards.innerHTML = `
-      <div class="d-flex flex-column align-items-center justify-content-center text-center" style="min-height: 300px;">
-        <img src="images/dog.gif" alt="No Results Found" class="no-results-gif">
-        <p class="no-results-text mt-3">No pets found matching your search. Please try again!</p>
-      </div>
-    `;
-    return; // Exit the function
-  }
-
-  // Loop through each pet and create a card
+  petCards.innerHTML = '';
+  
   pets.forEach((pet, index) => {
-    const card = `
-      <div class="col">
-        <div class="card">
-          <img src="images/${pet.image}" class="card-img-top" alt="${pet.name}">
-          <div class="card-body">
-            <h5 class="card-title">${pet.breed}</h5>
-            <p class="card-text">${pet.type}, ${pet.age} years old, ${pet.sex}</p>
-            <button class="btn btn-primary view-details-btn" data-index="${index}">View Details</button>
-          </div>
+    const card = document.createElement('div');
+    card.classList.add('col', 'pet-card');
+    card.setAttribute('data-index', index);
+    card.innerHTML = `
+      <div class="card clickable-card">
+        <img src="images/${pet.image}" class="card-img-top" alt="${pet.breed}">
+        <div class="card-body">
+          <h5 class="card-title">${pet.breed}</h5>
+          <p class="card-text">${pet.type}, ${pet.age} years old, ${pet.sex}</p>
+          <button class="btn btn-danger delete-btn" data-index="${index}">Delete</button>
         </div>
-      </div>
-    `;
-    petCards.innerHTML += card; // Add the card to the container
-  });
-
-  // Add event listeners to "View Details" buttons
-  document.querySelectorAll('.view-details-btn').forEach(button => {
-    button.addEventListener('click', event => {
-      const petIndex = event.target.getAttribute('data-index'); // Get the index of the selected pet
-      const selectedPet = pets[petIndex]; // Retrieve the selected pet data
-
-      // Save the selected pet to localStorage
-      localStorage.setItem('selectedPet', JSON.stringify(selectedPet));
-
-      // Redirect to the detail page
+      </div>`;
+    
+    card.addEventListener('click', () => {
+      localStorage.setItem('selectedPet', JSON.stringify(pet));
       window.location.href = 'detail.html';
     });
+    
+    petCards.appendChild(card);
   });
+
+  document.querySelectorAll('.delete-btn').forEach(button => {
+    button.addEventListener('click', event => {
+      event.stopPropagation(); // Prevent triggering card click
+      const petIndex = event.target.getAttribute('data-index');
+      petsData.splice(petIndex, 1); // Remove pet from array
+      localStorage.setItem('petsData', JSON.stringify(petsData)); // Update local storage
+      displayPets(petsData.slice(0, visiblePets)); // Refresh display
+    });
+  });
+
+  setupLoadMoreButton();
 }
 
-// Function to filter pets by type
-function filterPetsByType(type) {
-  if (type === 'all') {
-    displayPets(petsData); // Display all pets
-  } else {
-    // Filter pets based on their type (dog/cat)
-    const filteredPets = petsData.filter(pet => pet.type.toLowerCase() === type.toLowerCase());
-    displayPets(filteredPets); // Display only the filtered pets
+function setupLoadMoreButton() {
+  const loadMoreContainer = document.getElementById('loadMoreContainer');
+  loadMoreContainer.innerHTML = ''; // Clear previous button
+  
+  if (visiblePets < petsData.length) {
+    const loadMoreBtn = document.createElement('button');
+    loadMoreBtn.id = 'loadMore';
+    loadMoreBtn.className = 'btn btn-secondary mt-3';
+    loadMoreBtn.innerText = 'Load More';
+    loadMoreBtn.addEventListener('click', () => {
+      visiblePets += 9;
+      displayPets(petsData.slice(0, visiblePets));
+    });
+    loadMoreContainer.appendChild(loadMoreBtn);
   }
 }
 
-// Add event listeners to navbar links for filtering
+function showModal(pet) {
+  document.getElementById('modalPetImage').src = `images/${pet.image}`;
+  document.getElementById('modalPetTitle').innerText = pet.breed;
+  document.getElementById('modalPetAge').innerText = pet.age;
+  document.getElementById('modalPetBreed').innerText = pet.breed;
+  document.getElementById('modalPetGender').innerText = pet.sex;
+  document.getElementById('modalPetMicrochip').innerText = pet.microchipNumber || 'N/A';
+  document.getElementById('modalPetAbout').innerText = pet.about;
+}
+
+// Filter by category
+function filterPetsByType(type) {
+  const filteredPets = petsData.filter(pet => pet.type.toLowerCase() === type.toLowerCase());
+  displayPets(filteredPets);
+}
+
 document.getElementById('filterDogs').addEventListener('click', () => filterPetsByType('dog'));
 document.getElementById('filterCats').addEventListener('click', () => filterPetsByType('cat'));
-document.getElementById('filterHome').addEventListener('click', () => filterPetsByType('all')); // Home link shows all pets
-
-// Add search functionality to the Navbar search bar
-document.getElementById('searchInput').addEventListener('input', (event) => {
-  const searchTerm = event.target.value.toLowerCase(); // Convert input to lowercase
-  const filteredPets = petsData.filter(pet =>
-    pet.breed.toLowerCase().includes(searchTerm) // Match search term with pet breeds
-  );
-  displayPets(filteredPets); // Update displayed pets
-});
+document.getElementById('filterHome').addEventListener('click', () => displayPets(petsData.slice(0, visiblePets)));
