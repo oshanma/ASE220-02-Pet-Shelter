@@ -34,8 +34,8 @@ function displayPets(pets) {
       <div class="card h-100 shadow-sm border-0 cursor-pointer">
         <img src="images/${pet.image}" class="card-img-top rounded-top" alt="${pet.breed}">
         <div class="card-body text-center">
-          <h5 class="card-title">${pet.breed}</h5>
-          <p class="card-text">${pet.type}, ${pet.age} years old, ${pet.sex}</p>
+          <h5 class="card-title">${pet.name}</h5>
+          <p class="card-text">${pet.age} year old ${pet.sex} ${pet.breed}</p>
           <button class="btn btn-danger delete-btn" data-index="${index}">Delete</button>
         </div>
       </div>`;

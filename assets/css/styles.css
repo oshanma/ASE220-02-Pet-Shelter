@@ -8,6 +8,14 @@ body {
   padding-top: 56px;
 }
 
+.text-primary {
+  color: #8d7760 !important;
+}
+
+.navbar-collapse {
+  flex-grow: 0;
+}
+
 /* Navbar */
 .navbar {
   background: linear-gradient(135deg, #b09a8c, #8d7760);
@@ -65,7 +73,7 @@ body {
   background-color: #fff8f3;
   border-radius: 18px;
   box-shadow: 0 8px 16px rgba(141, 119, 96, 0.2);
-  transition: transform 0.4s ease-in-out, box-shadow 0.4s;
+  transition: transform 0.2s ease-in-out, box-shadow 0.4s;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -73,7 +81,7 @@ body {
 }
 
 .card:hover {
-  transform: scale(1.05);
+  transform: scale(1.02);
   box-shadow: 0 12px 24px rgba(141, 119, 96, 0.3);
 }
 
@@ -107,12 +115,11 @@ body {
   font-size: 1rem;
   font-weight: bold;
   border-radius: 12px;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
 
 .delete-btn:hover {
   background: linear-gradient(135deg, #80574d, #a06c60);
-  transform: scale(1.05);
   box-shadow: 0 8px 16px rgba(128, 87, 77, 0.5);
 }
 
@@ -190,7 +197,6 @@ body {
 .btn-primary:hover {
   background: linear-gradient(135deg, #80574d, #a06c60);
 }
-
 
 /* Image Upload */
 #previewImage {
@@ -283,7 +289,7 @@ body {
   background: rgba(0, 0, 0, 0.5);
 }
 
-/#hero {
+#hero {
   position: relative;
   height: 90vh;
   overflow: hidden;
