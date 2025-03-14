@@ -1,6 +1,6 @@
 # Pet Website
 
-### **Developed by:** Oshan Maharjan
+### **Developed by:** Oshan Maharjan and Denver Hogan
 
 ---
 
