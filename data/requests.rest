@@ -22,4 +22,4 @@ Content-Type: application/json
 {"test": true}
 
 ### Delete the content of a document
-DELETE http://127.0.0.1:3000/api
+DELETE http://127.0.0.1:3000/api/1743616510635
