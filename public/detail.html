@@ -1,118 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pet Details</title>
-  
-  <!-- Link to Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  
-  <!-- Link to custom styles -->
-  <link rel="stylesheet" href="assets/css/styles.css">
-  
-  <!-- Font Awesome for Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Pet Details</title>
+	
+	<!-- Link to Bootstrap CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+	
+	<!-- Link to custom styles -->
+	<link rel="stylesheet" href="assets/css/styles.css">
+	
+	<!-- Font Awesome for Icons -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body class="bg-light mt-5">
 
-  <!-- NAVBAR -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-    <div class="container-fluid">
-      <a class="navbar-brand fw-bold" href="index.html">🐾 Cincy Pets</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav me-auto">
-          <li class="nav-item"><a class="nav-link" href="index.html#hero">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="index.html#about">About</a></li>
-          <li class="nav-item"><a class="nav-link" href="index.html#volunteer">Be a Volunteer</a></li>
-          <li class="nav-item"><a class="nav-link" href="index.html#pets">Pets</a></li>
-          <li class="nav-item"><a class="nav-link" href="index.html#contact">Contact</a></li>
-          
-        </ul>
-      </div>
-    </div>
-  </nav>
+	<!-- NAVBAR -->
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+		<div class="container-fluid">
+			<a class="navbar-brand fw-bold" href="index.html">🐾 Cincy Pets</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav me-auto">
+					<li class="nav-item"><a class="nav-link" href="index.html#hero">Home</a></li>
+					<li class="nav-item"><a class="nav-link" href="index.html#about">About</a></li>
+					<li class="nav-item"><a class="nav-link" href="index.html#volunteer">Be a Volunteer</a></li>
+					<li class="nav-item"><a class="nav-link" href="index.html#pets">Pets</a></li>
+					<li class="nav-item"><a class="nav-link" href="index.html#contact">Contact</a></li>
+					
+				</ul>
+			</div>
+		</div>
+	</nav>
 
-  <div class="container py-5">
-    <!-- Back Button -->
-    <a href="index.html#pets" class="btn btn-outline-dark back-button align-items-center">
-      <i class="fas fa-arrow-left me-2"></i> Back to Pets
-    </a>
+	<div class="container py-5">
+		<!-- Back Button -->
+		<a href="index.html#pets" class="btn btn-outline-dark back-button align-items-center">
+			<i class="fas fa-arrow-left me-2"></i> Back to Pets
+		</a>
 
-    <!-- Pet Details Section -->
-    <div class="row pet-details-container mt-4">
-      <!-- Left Column: Pet Image -->
-      <div class="col-md-6 mb-4 me-4 text-center">
-        <img id="petImage" src="#" alt="Pet Image" class="img-fluid rounded shadow-lg"> 
-      </div>
+		<!-- Pet Details Section -->
+		<div class="row pet-details-container mt-4">
+			<!-- Left Column: Pet Image -->
+			<div class="col-md-6 mb-4 me-4 text-center">
+				<img id="petImage" src="#" alt="Pet Image" class="img-fluid rounded shadow-lg"> 
+			</div>
 
-      <!-- Right Column: Pet Information -->
-      <div class="col-md-5 pet-info bg-white p-4 mb-4 rounded shadow-sm">
-        <h3 id="petTitle" class="fw-bold text-primary"></h3>
-        <p><strong>Age:</strong> <span id="petAge"></span> years</p>
-        <p><strong>Breed:</strong> <span id="petBreed"></span></p>
-        <p><strong>Gender:</strong> <span id="petGender"></span></p>
-        <p><strong>Microchip Number:</strong> <span id="petMicrochip"></span></p>
-        <p id="petAbout" class="text-muted"></p>
-      </div>
-    </div>
-  </div>
+			<!-- Right Column: Pet Information -->
+			<div class="col-md-5 pet-info bg-white p-4 mb-4 rounded shadow-sm">
+				<h3 id="petTitle" class="fw-bold text-primary"></h3>
+				<p><strong>Age:</strong> <span id="petAge"></span> years</p>
+				<p><strong>Breed:</strong> <span id="petBreed"></span></p>
+				<p><strong>Gender:</strong> <span id="petGender"></span></p>
+				<p><strong>Microchip Number:</strong> <span id="petMicrochip"></span></p>
+				<p id="petAbout" class="text-muted"></p>
+			</div>
+		</div>
+	</div>
 
-  <!-- Footer -->
-  <footer class="footer bg-dark text-white pt-4 pb-2 mt-5">
-    <div class="container">
-      <div class="row text-center text-md-start">
-        <div class="col-md-4">
-          <p class="fw-bold">Cincy Pets Inc</p>
-          <p>Open 9 AM - 11 PM Daily</p>
-          <p>&copy; 2025 Cincy Pets. All Rights Reserved.</p>
-        </div>
-        <div class="col-md-4">
-          <h5 class="fw-bold">Quick Links</h5>
-          <ul class="list-unstyled">
-            <li><a href="index.html#hero" class="text-white text-decoration-none">Home</a></li>
-            <li><a href="index.html#about" class="text-white text-decoration-none">About</a></li>
-            <li><a href="index.html#pets" class="text-white text-decoration-none">Pets</a></li>
-          </ul>
-        </div>
-        <div class="col-md-4 text-end">
-          <h5 class="fw-bold">Follow Us</h5>
-          <div class="d-flex justify-content-end gap-2">
-            <a href="https://www.instagram.com/yourprofile" target="_blank" class="text-white">
-              <img src="images/insta.png" alt="Instagram" style="width: 30px;">
-            </a>
-            <a href="https://twitter.com/yourprofile" target="_blank" class="text-white">
-              <img src="images/X.png" alt="Twitter (X)" style="width: 30px;">
-            </a>
-            <a href="https://www.tiktok.com/@yourprofile" target="_blank" class="text-white">
-              <img src="images/tiktok.png" alt="TikTok" style="width: 30px;">
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </footer>
+	<!-- Footer -->
+	<footer class="footer bg-dark text-white pt-4 pb-2 mt-5">
+		<div class="container">
+			<div class="row text-center text-md-start">
+				<div class="col-md-4">
+					<p class="fw-bold">Cincy Pets Inc</p>
+					<p>Open 9 AM - 11 PM Daily</p>
+					<p>&copy; 2025 Cincy Pets. All Rights Reserved.</p>
+				</div>
+				<div class="col-md-4">
+					<h5 class="fw-bold">Quick Links</h5>
+					<ul class="list-unstyled">
+						<li><a href="index.html#hero" class="text-white text-decoration-none">Home</a></li>
+						<li><a href="index.html#about" class="text-white text-decoration-none">About</a></li>
+						<li><a href="index.html#pets" class="text-white text-decoration-none">Pets</a></li>
+					</ul>
+				</div>
+				<div class="col-md-4 text-end">
+					<h5 class="fw-bold">Follow Us</h5>
+					<div class="d-flex justify-content-end gap-2">
+						<a href="https://www.instagram.com/yourprofile" target="_blank" class="text-white">
+							<img src="images/insta.png" alt="Instagram" style="width: 30px;">
+						</a>
+						<a href="https://twitter.com/yourprofile" target="_blank" class="text-white">
+							<img src="images/X.png" alt="Twitter (X)" style="width: 30px;">
+						</a>
+						<a href="https://www.tiktok.com/@yourprofile" target="_blank" class="text-white">
+							<img src="images/tiktok.png" alt="TikTok" style="width: 30px;">
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
 
-  <!-- JavaScript Section -->
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const petData = JSON.parse(localStorage.getItem('selectedPet'));
-      if (petData) {
-        document.getElementById('petImage').src = `images/${petData.image}`;
-        document.getElementById('petTitle').innerText = `${petData.name}`;
-        document.getElementById('petAge').innerText = petData.age;
-        document.getElementById('petBreed').innerText = petData.breed;
-        document.getElementById('petGender').innerText = petData.sex;
-        document.getElementById('petMicrochip').innerText = petData.microchipNumber || 'N/A';
-        document.getElementById('petAbout').innerText = petData.about || 'No additional details available.';
-      }
-    });
-  </script>
+	<!-- JavaScript Section -->
+	<script>
+		document.addEventListener('DOMContentLoaded', () => {
+			const petData = JSON.parse(localStorage.getItem('selectedPet'));
+			if (petData) {
+				document.getElementById('petImage').src = `images/${petData.image}`;
+				document.getElementById('petTitle').innerText = `${petData.name}`;
+				document.getElementById('petAge').innerText = petData.age;
+				document.getElementById('petBreed').innerText = petData.breed;
+				document.getElementById('petGender').innerText = petData.sex;
+				document.getElementById('petMicrochip').innerText = petData.microchipNumber || 'N/A';
+				document.getElementById('petAbout').innerText = petData.about || 'No additional details available.';
+			}
+		});
+	</script>
 
-  <!-- Bootstrap JavaScript Bundle -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+	<!-- Bootstrap JavaScript Bundle -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
