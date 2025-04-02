@@ -29,16 +29,16 @@ This project is a front-end web application designed to efficiently manage pet r
 ### **Main Page**
 - Displays pet records in a **responsive grid layout** with two rows and three cards per row.
 - Each pet card contains:
-  - Key details (e.g., name, type, age, and gender).
-  - An image stored locally in the `images` folder.
-  - Visual elements (e.g., labels or icons) to represent gender and age.
-  - A **clickable link** to a detailed page for the pet.
+	- Key details (e.g., name, type, age, and gender).
+	- An image stored locally in the `images` folder.
+	- Visual elements (e.g., labels or icons) to represent gender and age.
+	- A **clickable link** to a detailed page for the pet.
 
 ### **Detail Page**
 - A two-column layout displaying:
-  - A **large image** of the pet.
-  - Comprehensive pet details, including breed, gender, and microchip number.
-  - A navigation button to return to the main page.
+	- A **large image** of the pet.
+	- Comprehensive pet details, including breed, gender, and microchip number.
+	- A navigation button to return to the main page.
 
 ### **Interactive Features**
 - **Search Functionality**: Dynamically search pets by breed.
