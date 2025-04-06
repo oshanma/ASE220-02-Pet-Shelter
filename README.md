@@ -1,4 +1,101 @@
-# Pet Website
+# Pet Shelter Management Application
+
+## Overview
+
+This is a pet shelter management application that allows users to browse, add, view, and delete pets. The application consists of a frontend built with HTML, CSS, and JavaScript, and a backend built with Node.js and Express.
+
+## Features
+
+- Browse available pets
+- View detailed information about each pet
+- Add new pets to the shelter
+- Delete pets from the shelter
+- Filter pets by type (dogs/cats)
+
+## Project Structure
+
+- `index.html` - Main landing page
+- `detail.html` - Detailed view page for individual pets
+- `server.js` - Backend server with API endpoints
+- `data/` - Directory containing JSON files for pet data
+- `images/` - Directory containing pet images
+- `videos/` - Directory containing pet videos
+- `assets/` - Directory containing additional website assets
+- `api.rest` - Documentation of API endpoints
+
+## Running the Application
+
+### Prerequisites
+
+- Node.js (v14 or higher)
+- A modern web browser (Chrome, Firefox, Safari, or Edge)
+
+### Backend Setup
+
+1. Navigate to the project directory:
+   ```bash
+   cd /path/to/project
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Start the server:
+   ```bash
+   node server.js
+   ```
+
+   You should see a message: "Server running on port 3000"
+
+### Frontend Setup
+
+You can run the frontend in two ways:
+
+#### Option 1: Using a local server (recommended)
+
+```bash
+# Using Python 3
+python -m http.server 8000
+
+# Or using Node.js
+npx serve
+```
+
+Then open your browser and go to `http://localhost:8000`
+
+#### Option 2: Directly opening the HTML file
+
+Simply double-click on the `index.html` file to open it in your browser.
+
+## API Documentation
+
+The application uses the following API endpoints:
+
+- `POST /api/jsonBlob` - Create a new blob
+- `GET /api/jsonBlob/{id}` - Get a blob by ID
+- `PUT /api/jsonBlob/{id}` - Update a blob
+- `DELETE /api/jsonBlob/{id}` - Delete a blob
+
+For more details, see the `api.rest` file.
+
+## Troubleshooting
+
+If you encounter any issues:
+
+1. Check the browser console (F12 or right-click > Inspect > Console) for error messages
+2. Verify the backend server is running - you should see "Server running on port 3000" in the terminal
+3. Check the data directory - make sure it exists and has write permissions
+4. Verify API endpoints - try accessing `http://localhost:3000/api/jsonBlob` directly in your browser
+
+## Team Members and Contributions
+
+This project was completed by Oshan Maharjan and Denver Hogan.
+
+- Backend implementation: Denver Hogan
+- Frontend implementation: Oshan Maharjan
+- API integration: Oshan Maharjan and Denver Hogan
 
 ### **Developed by:** Oshan Maharjan
 
