@@ -77,18 +77,46 @@
 
   <!-- JavaScript Section -->
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const petData = JSON.parse(localStorage.getItem('selectedPet'));
-      if (petData) {
-        document.getElementById('petImage').src = `images/${petData.image}`;
-        document.getElementById('petTitle').innerText = `${petData.breed}, ${petData.sex}`;
-        document.getElementById('petAge').innerText = petData.age;
-        document.getElementById('petBreed').innerText = petData.breed;
-        document.getElementById('petGender').innerText = petData.sex;
-        document.getElementById('petMicrochip').innerText = petData.microchipNumber || 'N/A';
-        document.getElementById('petAbout').innerText = petData.about || 'No additional details available.';
+    // Get the pet ID from the URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const petId = urlParams.get('id');
+
+    // Function to load pet details
+    async function loadPetDetails() {
+      try {
+        // Get the current blob ID from localStorage
+        const currentBlobId = localStorage.getItem('currentBlobId');
+        if (!currentBlobId) {
+          console.error('No blob ID found');
+          return;
+        }
+
+        // Fetch the pet data from the API
+        const response = await fetch(`http://localhost:3000/api/jsonBlob/${currentBlobId}`);
+        const pets = await response.json();
+        
+        // Find the specific pet
+        const pet = pets.find(p => p.animalID === parseInt(petId));
+        
+        if (pet) {
+          // Update the UI with pet details
+          document.getElementById('petImage').src = `images/${pet.image}`;
+          document.getElementById('petTitle').innerText = `${pet.breed}, ${pet.sex}`;
+          document.getElementById('petAge').innerText = pet.age;
+          document.getElementById('petBreed').innerText = pet.breed;
+          document.getElementById('petGender').innerText = pet.sex;
+          document.getElementById('petMicrochip').innerText = pet.microchipNumber || 'N/A';
+          document.getElementById('petAbout').innerText = pet.about || 'No additional details available.';
+        } else {
+          console.error('Pet not found');
+        }
+      } catch (error) {
+        console.error('Error loading pet details:', error);
       }
-    });
+    }
+
+    // Load pet details when the page loads
+    document.addEventListener('DOMContentLoaded', loadPetDetails);
   </script>
 
   <!-- Bootstrap JavaScript Bundle -->
