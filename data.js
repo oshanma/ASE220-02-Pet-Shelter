@@ -1,4 +1,140 @@
-const petsData=[
+// Store the blob ID
+let currentBlobId = null;
+
+// Function to initialize data
+async function initializeData() {
+    try {
+        // First, create a new blob with initial data
+        const response = await fetch('http://localhost:3000/api/jsonBlob', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(petsData)  // Use the existing petsData as initial data
+        });
+        
+        const data = await response.json();
+        currentBlobId = data.id;
+        
+        // Load the data
+        await loadPets();
+    } catch (error) {
+        console.error('Error initializing data:', error);
+    }
+}
+
+// Function to load pets
+async function loadPets() {
+    try {
+        const response = await fetch(`http://localhost:3000/api/jsonBlob/${currentBlobId}`);
+        const pets = await response.json();
+        // Update your UI with the pets data
+        displayPets(pets);
+    } catch (error) {
+        console.error('Error loading pets:', error);
+    }
+}
+
+// Function to add a pet
+async function addPet(petData) {
+    try {
+        const response = await fetch(`http://localhost:3000/api/jsonBlob/${currentBlobId}`);
+        const currentPets = await response.json();
+        
+        const updatedPets = [...currentPets, petData];
+        
+        await fetch(`http://localhost:3000/api/jsonBlob/${currentBlobId}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(updatedPets)
+        });
+        
+        await loadPets();  // Reload the pets
+    } catch (error) {
+        console.error('Error adding pet:', error);
+    }
+}
+
+// Function to delete a pet
+async function deletePet(petId) {
+    try {
+        const response = await fetch(`http://localhost:3000/api/jsonBlob/${currentBlobId}`);
+        const currentPets = await response.json();
+        
+        const updatedPets = currentPets.filter(pet => pet.animalID !== petId);
+        
+        await fetch(`http://localhost:3000/api/jsonBlob/${currentBlobId}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(updatedPets)
+        });
+        
+        await loadPets();  // Reload the pets
+    } catch (error) {
+        console.error('Error deleting pet:', error);
+    }
+}
+
+// Function to update a pet
+async function updatePet(petId, updatedPetData) {
+    try {
+        const response = await fetch(`http://localhost:3000/api/jsonBlob/${currentBlobId}`);
+        const currentPets = await response.json();
+        
+        const updatedPets = currentPets.map(pet => 
+            pet.animalID === petId ? { ...pet, ...updatedPetData } : pet
+        );
+        
+        await fetch(`http://localhost:3000/api/jsonBlob/${currentBlobId}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(updatedPets)
+        });
+        
+        await loadPets();  // Reload the pets
+    } catch (error) {
+        console.error('Error updating pet:', error);
+    }
+}
+
+// Function to display pets in the UI
+function displayPets(pets) {
+    const petsContainer = document.getElementById('pets-container');
+    if (!petsContainer) return;
+
+    petsContainer.innerHTML = '';
+    
+    pets.forEach(pet => {
+        const petElement = document.createElement('div');
+        petElement.className = 'pet-card';
+        petElement.innerHTML = `
+            <img src="images/${pet.image}" alt="${pet.breed}">
+            <h3>${pet.breed}</h3>
+            <p>Age: ${pet.age} years</p>
+            <p>Sex: ${pet.sex}</p>
+            <button onclick="viewPetDetails(${pet.animalID})">View Details</button>
+            <button onclick="deletePet(${pet.animalID})">Delete</button>
+        `;
+        petsContainer.appendChild(petElement);
+    });
+}
+
+// Function to view pet details
+function viewPetDetails(petId) {
+    window.location.href = `detail.html?id=${petId}`;
+}
+
+// Initialize the data when the page loads
+document.addEventListener('DOMContentLoaded', initializeData);
+
+// Keep the original petsData for initial data
+const petsData = [
   {
     "type": "Dog",
     "breed": "Beagle",
