@@ -61,6 +61,45 @@ The project uses the **Apache License 2.0**, allowing you to use, modify, and di
 
 ---
 
+## **Backend Setup**
+
+### **Requirements**
+- Node.js
+- Express
+
+### **Running the Backend**
+1. Navigate to the project directory in your terminal.
+2. Install the necessary dependencies by running:
+   ```bash
+   npm install
+   ```
+3. Start the server with the following command:
+   ```bash
+   node server.js
+   ```
+4. The server will be running on `http://localhost:3000`.
+
+### **API Endpoints**
+- **POST /api/jsonBlob**: Accepts a JSON object in the body and responds with a unique ID and Location header.
+- **GET /api/jsonBlob/{id}**: Retrieves the JSON blob with the given ID.
+- **PUT /api/jsonBlob/{id}**: Replaces the JSON blob with the new data in the request body.
+- **DELETE /api/jsonBlob/{id}**: Deletes the specified blob.
+
+## **Frontend Setup**
+
+### **Running the Frontend**
+1. Ensure the backend server is running.
+2. Open `index.html` in your preferred web browser.
+
+## **Team Members and Contributions**
+- **Oshan Maharjan**: Developed the frontend and integrated the backend API.
+- **Denver Hogan**: Assisted with backend development and testing.
+
+## **Additional Files**
+- A `.rest` file is included to document the API endpoints and test them using a REST client.
+
+---
+
 
 
 ---

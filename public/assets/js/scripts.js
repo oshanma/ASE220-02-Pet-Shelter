@@ -1,26 +1,64 @@
-const SERVER_URL = "http://localhost:3000/api";
+const SERVER_URL = "http://localhost:3000/api/jsonBlob";
 let visiblePets = 9;
+let BLOB_ID = "1"; 
 
 // API Helper Functions
 const fetchData = async () => {
 	try {
-		const response = await fetch(SERVER_URL);
-		return await response.json();
+		const response = await fetch(`${SERVER_URL}/${BLOB_ID}`);
+		if (!response.ok) {
+			if (response.status === 404) {
+				
+
+				const createResponse = await fetch(`${SERVER_URL}`, {
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify([])
+				});
+				
+				if (!createResponse.ok) {
+					throw new Error('Failed to create initial blob');
+				}
+				
+				const result = await createResponse.json();
+				BLOB_ID = result.id;
+				return [];
+			}
+			throw new Error(`HTTP error! status: ${response.status}`);
+		}
+		
+		const blob = await response.json();
+		
+		
+		if (Array.isArray(blob)) {
+			return blob;
+		}
+		
+		
+		console.warn("Unexpected blob structure:", blob);
+		return [];
 	} catch (error) {
 		console.error('Fetch error:', error);
 		return [];
 	}
 };
 
-const persistData = async (data) => {
+const updateData = async (data) => {
 	try {
-		await fetch(SERVER_URL, {
+		const response = await fetch(`${SERVER_URL}/${BLOB_ID}`, {
 			method: 'PUT',
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify(data)
 		});
+		
+		if (!response.ok) {
+			throw new Error(`HTTP error! status: ${response.status}`);
+		}
+		
+		return true;
 	} catch (error) {
-		console.error('Save error:', error);
+		console.error('Update error:', error);
+		return false;
 	}
 };
 
@@ -31,8 +69,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         
         // Display initial pets
         displayPets(petsData.slice(0, visiblePets));
-        setupCreatePetForm(persistData);
-        setupFilters(persistData);
+        setupCreatePetForm();
+        setupFilters();
         
     } catch (error) {
         console.error("Error initializing application:", error);
@@ -54,7 +92,7 @@ async function displayPets(pets) {
         card.classList.add('col', 'pet-card');
         card.setAttribute('data-index', index);
 
-        // Store pet data in local storage and navigate to details on click
+        
         card.addEventListener('click', () => {
             localStorage.setItem('selectedPet', JSON.stringify(pet));
             window.location.href = 'detail.html';
@@ -70,24 +108,20 @@ async function displayPets(pets) {
                 </div>
             </div>`;
 
-        // Delete button functionality
+  
         card.querySelector('.delete-btn').addEventListener('click', async (event) => {
 			event.stopPropagation();
 			try {
-				const response = await fetch(`${SERVER_URL}/${pet.animalID}`, {
-					method: 'DELETE'
-				});
+				const currentPets = await fetchData();
+				const updatedPets = currentPets.filter(p => p.animalID !== pet.animalID);
 				
-				if (response.status === 404) {
-					throw new Error('Pet not found');
+				const success = await updateData(updatedPets);
+				
+				if (success) {
+					displayPets(updatedPets.slice(0, visiblePets));
+				} else {
+					alert('Failed to delete pet. Please try again.');
 				}
-				
-				if (!response.ok) {
-					throw new Error(`HTTP error! status: ${response.status}`);
-				}
-				
-				const updatedData = await fetchData();
-				displayPets(updatedData.slice(0, visiblePets));
 			} catch (error) {
 				console.error('Delete error:', error);
 				alert(`Error deleting pet: ${error.message}`);
@@ -101,7 +135,7 @@ async function displayPets(pets) {
 }
 
 // Filters with API support
-function setupFilters(persistData) {
+function setupFilters() {
     document.getElementById('filterDogs').addEventListener('click', async () => {
         const data = await fetchData();
         filterPetsByType('Dog', data);
@@ -124,7 +158,7 @@ function filterPetsByType(type, data) {
 }
 
 // Pet creation with API support
-function setupCreatePetForm(persistData) {
+function setupCreatePetForm() {
     document.getElementById('createPetForm').addEventListener('submit', async function(event) {
     event.preventDefault();
 
@@ -149,24 +183,22 @@ function setupCreatePetForm(persistData) {
     };
 
     try {
-		const response = await fetch(SERVER_URL, {
-			method: 'POST',
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify(newPet)
-		});
-	
-		if (!response.ok) throw new Error('Failed to add pet');
-		
-		const createdPet = await response.json();
 		const currentPets = await fetchData();
-		displayPets([...currentPets, createdPet].slice(0, visiblePets));
+		const updatedPets = [...currentPets, newPet];
 		
-		// Reset form
-		document.getElementById('createPetForm').reset();
-		document.getElementById('previewImage').style.display = 'none';
-		const modal = bootstrap.Modal.getInstance(document.getElementById('createPetModal'));
-		modal.hide();
+		const success = await updateData(updatedPets);
 		
+		if (success) {
+			displayPets(updatedPets.slice(0, visiblePets));
+			
+			// Reset form
+			document.getElementById('createPetForm').reset();
+			document.getElementById('previewImage').style.display = 'none';
+			const modal = bootstrap.Modal.getInstance(document.getElementById('createPetModal'));
+			modal.hide();
+		} else {
+			alert('Failed to add pet. Please try again.');
+		}
 	} catch (error) {
 		console.error('Create error:', error);
 		alert('Failed to add pet. Please try again.');
