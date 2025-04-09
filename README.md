@@ -61,10 +61,6 @@ The project uses the **Apache License 2.0**, allowing you to use, modify, and di
 
 ---
 
-## **Video Walkthrough**
-
-
-https://github.com/user-attachments/assets/1ed034c3-bb76-4f3b-9a2a-99d60937cab1
 
 
 ---
