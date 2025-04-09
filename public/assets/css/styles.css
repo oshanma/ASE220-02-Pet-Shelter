@@ -316,7 +316,7 @@ body {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	background: url('../videos/1.mp4') no-repeat center center/cover; /* Same as Hero */
+	background: url('../../videos/1.mp4') no-repeat center center/cover; /* Same as Hero */
 	position: relative;
 }
 

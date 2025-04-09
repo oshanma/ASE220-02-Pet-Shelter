@@ -95,7 +95,7 @@ async function displayPets(pets) {
         
         card.addEventListener('click', () => {
             localStorage.setItem('selectedPet', JSON.stringify(pet));
-            window.location.href = 'detail.html';
+            window.location.href = 'detail';
         });
 
         card.innerHTML = `

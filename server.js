@@ -8,7 +8,6 @@ app.use(express.static('public'));
 
 const DB_PATH = path.join(__dirname, 'data/db.json');
 
-
 const getAllBlobs = () => {
     try {
         const data = fs.readFileSync(DB_PATH, 'utf8');
@@ -26,6 +25,12 @@ const saveAllBlobs = (blobs) => {
 if (!fs.existsSync(DB_PATH)) {
     saveAllBlobs({});
 }
+
+// HTML catchall
+app.use((req,res,next)=>{
+	if(fs.existsSync(`./public${req.url}.html`)) res.send(fs.readFileSync(`./public${req.url}.html`,'utf8'));
+	else next();
+});
 
 // POST 
 app.post('/api/jsonBlob', (req, res) => {
