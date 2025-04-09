@@ -1,6 +1,6 @@
 # Pet Website
 
-### **Developed by:** Oshan Maharjan and Denver Hogan
+### Developed by Oshan Maharjan and Denver Hogan
 
 ---
 
@@ -10,19 +10,6 @@ This project is a front-end web application designed to efficiently manage pet r
 
 ---
 
-## **Recent Updates**
-
-### **Key Changes** 
-- Replaced data.json with data.js: The project now loads pet data from a JavaScript file instead of a JSON file.
-- Updated scripts.js: Adjusted the logic to directly access the petsData variable from data.js.
-- Removed data.json: Since JavaScript natively supports object arrays, using a JSON file for static data was unnecessary.
-
-### **Why Use data.js Instead of data.json?**
-- Direct Variable Access: A JavaScript file (data.js) allows direct access to data as a global variable, eliminating the need for a fetch() request.
-- Faster Load Time: By avoiding an asynchronous fetch operation, the page loads data immediately without waiting for an external request.
-- Simplified Implementation: data.js allows for easier integration into JavaScript functions without requiring additional error handling for fetch failures.
-- More Flexibility: With data.js, we can manipulate and modify pet data within the script dynamically.
----
 
 ## **Features**
 
@@ -41,8 +28,8 @@ This project is a front-end web application designed to efficiently manage pet r
 	- A navigation button to return to the main page.
 
 ### **Interactive Features**
-- **Search Functionality**: Dynamically search pets by breed.
-- **Filtering**: Filter pets by type (dogs/cats).
+- **Search Functionality**: Dynamically search pets by name or breed.
+- **Filtering**: Filter pets by type (dogs/cats) or adoption status.
 - **Error Handling**: Displays a custom **"No Results Found"** message with a GIF when no pets match the search criteria.
 - **Responsive Design**: Ensures a seamless user experience across all devices.
 
@@ -54,10 +41,11 @@ This project is a front-end web application designed to efficiently manage pet r
 - **HTML5**: For semantic and structured content.
 - **CSS3**: For layout, styling, and visual customization.
 - **Bootstrap 5**: To ensure responsiveness and a consistent layout.
-- **JavaScript**: For interactivity and dynamic content manipulation.
+- **JavaScript (ES6+)**: For interactivity and dynamic content manipulation.
 
-### **Licensing**
-The project uses the **Apache License 2.0**, allowing you to use, modify, and distribute the code.
+### **Backend Development**
+- **Node.js**: For server-side scripting.
+- **Express**: For building RESTful APIs.
 
 ---
 
@@ -85,22 +73,24 @@ The project uses the **Apache License 2.0**, allowing you to use, modify, and di
 - **PUT /api/jsonBlob/{id}**: Replaces the JSON blob with the new data in the request body.
 - **DELETE /api/jsonBlob/{id}**: Deletes the specified blob.
 
+---
+
 ## **Frontend Setup**
 
 ### **Running the Frontend**
 1. Ensure the backend server is running.
-2. Open `index.html` in your preferred web browser.
-
-## **Team Members and Contributions**
-- **Oshan Maharjan**: Developed the frontend and integrated the backend API.
-- **Denver Hogan**: Assisted with backend development and testing.
-
-## **Additional Files**
-- A `.rest` file is included to document the API endpoints and test them using a REST client.
+2. Visit `http://localhost:3000` in your preferred web browser.
 
 ---
 
+## **Team Members and Contributions**
+- **Oshan Maharjan**: Developed the frontend and assisted with backend development.
+- **Denver Hogan**: Integrated the backend API, ran testing, and implemented feature enhancements.
 
+---
+
+## **Additional Files**
+- A `.rest` file is included to document the API endpoints and test them using a REST client.
 
 ---
 
